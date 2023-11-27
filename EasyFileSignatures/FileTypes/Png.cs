@@ -16,7 +16,7 @@ public class Png : IFileType
     {
         get
         {
-            return string.Empty;
+            return "image/png";
         }
     }
 
@@ -24,7 +24,7 @@ public class Png : IFileType
     {
         get
         {
-            return string.Empty;
+            return "png";
         }
     }
 

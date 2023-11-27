@@ -16,7 +16,7 @@ public class Jpeg
     {
         get
         {
-            return string.Empty;
+            return "image/jpeg";
         }
     }
 
@@ -24,7 +24,7 @@ public class Jpeg
     {
         get
         {
-            return string.Empty;
+            return "jpeg";
         }
     }
 
