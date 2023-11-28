@@ -2,7 +2,7 @@
 
 namespace EasyFileSignatures.Abstrations;
 
-public interface IFileType
+public interface IFileDetails
 {
     public string Name { get; }
     List<byte[]> Singnatures { get; }
@@ -11,7 +11,7 @@ public interface IFileType
 
     string Extension { get; }
 
-    ContentCategory Type { get; }
+    ContentCategory Category { get; }
 
     Range Range { get; }
 }

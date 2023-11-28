@@ -2,7 +2,7 @@
 
 namespace EasyFileSignatures.FileTypes;
 
-public class Png : IFileType
+public class Png : IFileDetails
 {
     public List<byte[]> Singnatures { get; private set; }
 
@@ -10,7 +10,7 @@ public class Png : IFileType
 
     public string Extension { get; private set; }
 
-    public ContentCategory Type { get; private set; }
+    public ContentCategory Category { get; private set; }
 
     public Range Range { get; private set; }
     public string Name { get; private set; }
@@ -23,7 +23,7 @@ public class Png : IFileType
 
         MediaType = "image/png";
         Extension = "png";
-        Type = ContentCategory.StillImage;
+        Category = ContentCategory.StillImage;
         Range = new Range(0, 8);
         Name = "PNG";
     }

@@ -2,7 +2,7 @@
 
 namespace EasyFileSignatures.FileTypes;
 
-public class Jfif : IFileType
+public class Jfif : IFileDetails
 {
     public List<byte[]> Singnatures { get; private set; }
 
@@ -10,7 +10,7 @@ public class Jfif : IFileType
 
     public string Extension { get; private set; }
 
-    public ContentCategory Type { get; private set; }
+    public ContentCategory Category { get; private set; }
 
     public Range Range { get; private set; }
 
@@ -24,7 +24,7 @@ public class Jfif : IFileType
 
         MediaType = "image/jpeg";
         Extension = "jpeg";
-        Type = ContentCategory.StillImage;
+        Category = ContentCategory.StillImage;
         Range = new Range(0, 4);
 
         Name = "JFIF_1_02";
