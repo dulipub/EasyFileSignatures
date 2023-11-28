@@ -33,7 +33,7 @@ public class Inspector
         }
     }
 
-    public IFileDetails InspectDetails(string filePath)
+    private IFileDetails InspectDetails(string filePath)
     {
         byte[] fileBytes;
         using (var ms = new MemoryStream())
@@ -46,8 +46,13 @@ public class Inspector
             fileBytes = ms.ToArray();
         }
 
+        return InspectDetails(fileBytes);
+    }
+
+    private IFileDetails InspectDetails(byte[] fileBytes)
+    {
         IFileDetails file = null;
-        foreach(var signature in _fileTypes.Keys)
+        foreach (var signature in _fileTypes.Keys)
         {
             var tempType = _fileTypes[signature];
             if (signature.SequenceEqual(fileBytes.Take(tempType.Range)))
@@ -62,29 +67,37 @@ public class Inspector
 
     public string GetExtension(string filePath)
     {
-        byte[] fileBytes;
-        using (var ms = new MemoryStream())
-        {
-            using (var fs = File.OpenRead(filePath))
-            {
-                fs.CopyTo(ms);
-            }
-
-            fileBytes = ms.ToArray();
-        }
-
-        IFileDetails file = null;
-        foreach (var signature in _fileTypes.Keys)
-        {
-            var tempType = _fileTypes[signature];
-            if (signature.SequenceEqual(fileBytes.Take(tempType.Range)))
-            {
-                file = tempType;
-                break;
-            }
-        }
-
+        var file = InspectDetails(filePath);
         return file.Extension;
     }
 
+    public ContentCategory GetContentCategory(string filePath)
+    {
+        var file = InspectDetails(filePath);
+        return file.Category;
+    }
+
+    public string GetMediaType(string filePath)
+    {
+        var file = InspectDetails(filePath);
+        return file.MediaType;
+    }
+
+    public string GetExtension(byte[] fileBytes)
+    {
+        var file = InspectDetails(fileBytes);
+        return file.Extension;
+    }
+
+    public ContentCategory GetContentCategory(byte[] fileBytes)
+    {
+        var file = InspectDetails(fileBytes);
+        return file.Category;
+    }
+
+    public string GetMediaType(byte[] fileBytes)
+    {
+        var file = InspectDetails(fileBytes);
+        return file.MediaType;
+    }
 }
