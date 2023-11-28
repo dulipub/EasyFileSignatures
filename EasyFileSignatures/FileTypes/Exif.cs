@@ -2,7 +2,7 @@
 
 namespace EasyFileSignatures.FileTypes;
 
-public class Png : IFileType
+public class Exif : IFileType
 {
     public List<byte[]> Singnatures { get; private set; }
 
@@ -13,18 +13,19 @@ public class Png : IFileType
     public ContentCategory Type { get; private set; }
 
     public Range Range { get; private set; }
+
     public string Name { get; private set; }
 
-    public Png()
+    public Exif()
     {
         Singnatures = new List<byte[]> {
-             new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }
+             new byte[] { 0xFF, 0xD8, 0xFF, 0xE1 }
         };
 
-        MediaType = "image/png";
-        Extension = "png";
+        MediaType = "image/jpeg";
+        Extension = ".jpeg";
         Type = ContentCategory.StillImage;
-        Range = new Range(0, 8);
-        Name = "PNG";
+        Range = new Range(0, 4);
+        Name = "JPEG_EXIF";
     }
 }

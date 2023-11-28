@@ -4,11 +4,14 @@ namespace EasyFileSignatures.Abstrations;
 
 public interface IFileType
 {
-    int[] Singnature { get; }
+    public string Name { get; }
+    List<byte[]> Singnatures { get; }
 
     string MediaType { get; }
 
     string Extension { get; }
 
-    FileType Type { get; }
+    ContentCategory Type { get; }
+
+    Range Range { get; }
 }
