@@ -65,39 +65,43 @@ public class Inspector
         return file;
     }
 
-    public string GetExtension(string filePath)
+    public InspectResult Inspect(string filePath)
     {
         var file = InspectDetails(filePath);
-        return file.Extension;
+        if (file != null)
+        {
+            var result = new InspectResult
+            {
+                Name = file.Name,
+                MediaType = file.MediaType,
+                Category = file.Category,
+                Extension = file.Extension
+            };
+
+            return result;
+        }
+
+
+        return null;
     }
 
-    public ContentCategory GetContentCategory(string filePath)
-    {
-        var file = InspectDetails(filePath);
-        return file.Category;
-    }
-
-    public string GetMediaType(string filePath)
-    {
-        var file = InspectDetails(filePath);
-        return file.MediaType;
-    }
-
-    public string GetExtension(byte[] fileBytes)
-    {
-        var file = InspectDetails(fileBytes);
-        return file.Extension;
-    }
-
-    public ContentCategory GetContentCategory(byte[] fileBytes)
+    public InspectResult Inspect(byte[] fileBytes)
     {
         var file = InspectDetails(fileBytes);
-        return file.Category;
-    }
+        if (file != null)
+        {
+            var result = new InspectResult
+            {
+                Name = file.Name,
+                MediaType = file.MediaType,
+                Category = file.Category,
+                Extension = file.Extension
+            };
 
-    public string GetMediaType(byte[] fileBytes)
-    {
-        var file = InspectDetails(fileBytes);
-        return file.MediaType;
+            return result;
+        }
+
+
+        return null;
     }
 }
